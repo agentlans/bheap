@@ -2,11 +2,11 @@
 
 #DEBUGFLAGS=-g -fsanitize=address -DDEBUG
 
-libbheap.so: bheap.c
-	$(CC) $(DEBUGFLAGS) -fPIC -shared bheap.c -o libbheap.so
+libbheap.so: src/bheap.c src/intint.c
+	$(CC) $(DEBUGFLAGS) -fPIC -shared src/bheap.c src/intint.c -Iinclude/ -o libbheap.so
 
 check: libbheap.so
-	$(CXX) $(DEBUGFLAGS) HeapImitation.cpp ./libbheap.so -o libbheap_test
+	$(CXX) $(DEBUGFLAGS) test/HeapImitation.cpp ./libbheap.so -Iinclude/ -o libbheap_test
 	./libbheap_test > /dev/null
 	# If there are no error message above, then all tests passed successfully.
 	# Note: if you want, you can run libbheap_test to see the verbose output

@@ -55,8 +55,8 @@ binary_heap* binary_heap_new() {
 
 void binary_heap_free(binary_heap* b) {
 	free(b->score);
-	free(b->forward);
-	free(b->backward);
+	intint_free(b->forward);
+	intint_free(b->backward);
 	free(b);
 }
 
